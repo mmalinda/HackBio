@@ -1,44 +1,46 @@
 #!/bin/bash
 
-##### Stage 0 Task #####
+# Stage 0 Task
 
-## Project 1: BASh Basic
+######################################### Project 1: BASh Basics ######################################################
 
 # 1. Print your name
-name="Mutanu"
+name='Mutanu'
 echo 'My name is' $name
 
 # 2. Create a folder titled your name
-echo 'Initial list of files & folders:'
+echo 'Initial list of files in directory:'
 ls
 mkdir mutanu
 
-echo 'New folder:' # Checking that the folder exists
+echo 'New folder created:' # Checking that the folder exists
 ls
 
 # 3. Create another new directory titled biocomputing and change to that directory with one line of command
 mkdir biocomputing && cd biocomputing
 
-echo 'Printing working directory'
+echo 'Changed directory to new folder: biocomputing'
 pwd # Making sure we have created and navigated into the new directory
 
 # 4. Download these 3 files:
 echo 'Downloading files'
 wget https://raw.githubusercontent.com/HackBio-Internship/Bash_NGS_Starters/refs/heads/main/biocomp_samp/wildtype.fna https://raw.githubusercontent.com/HackBio-Internship/Bash_NGS_Starters/refs/heads/main/biocomp_samp/wildtype.gbk https://raw.githubusercontent.com/HackBio-Internship/Bash_NGS_Starters/refs/heads/main/biocomp_samp/wildtype.gbk
 
-echo 'Download complete. New list of files:'
+echo 'Download complete.'
 ls -lh # Checking that files have been downloaded
 
 # 5. Move the .fna file to the folder titled your name
 mv wildtype.fna ../mutanu
 
-echo 'Contents of self titled folder:'
+echo 'contents of biocomputing folder:'
+ls 
+echo 'contents of self-titled folder:'
 ls ../mutanu/ # Checking that the file was moved
 
 # 6. Delete the duplicate gbk file
 rm wildtype.gbk.1
 
-echo 'Duplicate file deleted. Current contents of the folder:'
+echo 'Duplicate file deleted.'
 ls # Checking that the file was deleted
 
 # 7. Confirm if the .fna file is mutant or wild type (tatatata vs tata)
@@ -46,13 +48,13 @@ ls # Checking that the file was deleted
 cd ../mutanu # Navigating to folder with fna file
 
 echo 'Checking for mutant sequence:'
-if grep 'TATATATA' wildtype.fna; then
-    echo "Mutant"
+if grep -q 'TATATATA' wildtype.fna; then
+    echo 'Mutant sequence. Matching lines:'
+    grep 'TATATATA' wildtype.fna
     touch mutant.txt
-    grep 'TATATATA' wildtype.fna > mutant.txt
-    echo 'Matching lines saved to mutant.txt'
+    grep 'TATATATA' wildtype.fna > mutant.txt && echo 'Matching lines saved to mutant.txt.'
 else
-    echo "Wildtype"    
+    echo 'Wildtype sequence'    
 fi
 
 # 9. Count number of lines (excluding header) in the .gbk file
@@ -74,13 +76,14 @@ grep '/gene=' wildtype.gbk
 
 # 13. Clear your terminal space and print all commands used today
 cd ..
-clear
+clear #comment out if running as a script to avoid losing the last few lines of output.
 history
+
 # 14. List the files in the two folders
 echo 'Files in this directory:'
 ls -R
 
-## Project 2: Installing Bioinformatics Software on the Terminal
+######################### Project 2: Installing Bioinformatics Software on the Terminal ###############################
 
 # 1. Activate your base conda environment
 echo 'Conda version:'
@@ -114,10 +117,14 @@ conda install -c bioconda bwa blast samtools bedtools spades bcftools fastp mult
 echo 'Installed packages:'
 conda list
 
+conda deactivate
+
 ## Professional Profile:
 
 # GitHub repo code submission
+echo 'Github repo: https://github.com/mmalinda/HackBio'
 
 # LinkedIn Video
+echo 'Video - Explaining my solution step by step:'
 
 
